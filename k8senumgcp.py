@@ -28,6 +28,9 @@ while True:
     print("14. Lists the daemon sets in the cluster.")
     print("15. Lists the cron jobs in the cluster.")
     print("16. Lists the config maps in the cluster (with optional namespace)")
+    print("17. Lists container images in Google Cloud (with optional repository)")
+    print("18. Describes a container image in Google Cloud (with optional name)")
+    print("19. Lists Google Cloud container clusters (with optional cluster name and region)")
     print("0. Exit")
 
     choice = input("Option: ")
@@ -95,6 +98,30 @@ while True:
             else:
                 command += "get configmaps"
 
+        execute_command(command, output_file)
+    elif choice == "17":
+        repository = input("Enter the repository (optional, press Enter to skip): ")
+        command = f"gcloud container images list"
+        if repository:
+            command += f" --repository={repository}"
+        output_file = "container_images.txt"
+        execute_command(command, output_file)
+    elif choice == "18":
+        name = input("Enter the image name (optional, press Enter to skip): ")
+        command = "gcloud container images describes"
+        if name:
+            command += f"{name}"
+        output_file = "container_image_describe.txt"
+        execute_command(command, output_file)
+    elif choice == "19":
+        cluster_name = input("Enter the cluster name (optional, press Enter to skip): ")
+        region = input("Enter the region (optional, press Enter to skip): ")
+        command = "gcloud container clusters describe"
+        if cluster_name:
+            command += f" {cluster_name}"
+        if region:
+            command += f" --region={region}"
+        output_file = "container_clusters.txt"
         execute_command(command, output_file)
     else:
         print("Invalid option. Try again.")
