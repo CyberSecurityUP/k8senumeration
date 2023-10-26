@@ -30,7 +30,9 @@ gcloud container clusters get-credentials CLUSTER_NAME \
     --region=COMPUTE_REGION
 `
 
-## Using K8SEnum
+## Using K8SEnumgcp
+
+### Running Tool
 
 `
 python3 k8senumgcp.py
