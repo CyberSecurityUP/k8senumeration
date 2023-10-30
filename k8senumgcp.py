@@ -39,66 +39,88 @@ while True:
         break
     elif choice in ["1", "2", "3", "5", "6", "7", "9", "13"]:
         command = f"kubectl "
-        output_file = f"{choice}.txt"
         if choice == "1":
             command += "config get-users"
+            output_file = "container_getusers.txt"
+            execute_command(command, output_file)
         elif choice == "2":
             command += "config get-contexts"
+            output_file = "container_getcontexts.txt"
+            execute_command(command, output_file)
         elif choice == "3":
             command += "config get-clusters"
+            output_file = "container_getclusters.txt"
+            execute_command(command, output_file)
         elif choice == "5":
             command += "get roles"
+            output_file = "container_getroles.txt"
+            execute_command(command, output_file)
         elif choice == "6":
             command += "get clusterroles"
+            output_file = "container_clusterroles.txt"
+            execute_command(command, output_file)
         elif choice == "7":
             command += "get namespaces"
+            output_file = "container_getnamespace.txt"
+            execute_command(command, output_file)
         elif choice == "9":
             command += "get serviceaccounts"
+            output_file = "container_getserviceaccounts.txt"
+            execute_command(command, output_file)
         elif choice == "13":
             command += "get nodes"
-
-        execute_command(command, output_file)
+            output_file = "container_getnodes.txt"
+            execute_command(command, output_file)
     elif choice in ["4", "8", "10", "11", "12", "16"]:
         command = "kubectl "
-        output_file = f"{choice}.txt"
         if choice == "4":
             namespace = input("Enter the namespace (optional, press Enter to skip): ")
             if namespace:
                 command += f"auth can-i --list -n {namespace}"
             else:
                 command += "auth can-i --list"
+            output_file = "container_authcans.txt"
+            execute_command(command, output_file)
         elif choice == "8":
             namespace = input("Enter the namespace (optional, press Enter to skip): ")
             if namespace:
                 command += f"get secrets -o yaml -n {namespace}"
             else:
                 command += "get secrets -o yaml"
+            output_file = "container_getsecrets.txt"
+            execute_command(command, output_file)
         elif choice == "10":
             namespace = input("Enter the namespace (optional, press Enter to skip): ")
             if namespace:
                 command += f"get deployments -n {namespace}"
             else:
                 command += "get deployments"
+            output_file = "container_getdeployments.txt"
+            execute_command(command, output_file)
         elif choice == "11":
             namespace = input("Enter the namespace (optional, press Enter to skip): ")
             if namespace:
                 command += f"get pods -n {namespace}"
             else:
                 command += "get pods"
+            output_file = "container_getpods.txt"
+            execute_command(command, output_file)
         elif choice == "12":
             namespace = input("Enter the namespace (optional, press Enter to skip): ")
             if namespace:
                 command += f"get services -n {namespace}"
             else:
                 command += "get services"
+            output_file = "container_getservices.txt"
+            execute_command(command, output_file)
         elif choice == "16":
             namespace = input("Enter the namespace (optional, press Enter to skip): ")
             if namespace:
                 command += f"get configmaps -n {namespace}"
             else:
                 command += "get configmaps"
-
-        execute_command(command, output_file)
+            output_file = "container_getconfigmaps.txt"
+            execute_command(command, output_file)
     elif choice == "17":
         repository = input("Enter the repository (optional, press Enter to skip): ")
         command = f"gcloud container images list"
@@ -127,4 +149,3 @@ while True:
         print("Invalid option. Try again.")
 
 print("Script Finished.")
-
