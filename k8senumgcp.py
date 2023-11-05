@@ -121,6 +121,16 @@ while True:
                 command += "get configmaps"
             output_file = "container_getconfigmaps.txt"
             execute_command(command, output_file)
+    elif choice in ["14", "15"]:
+        command = "kubectl "
+        if choice == "14":
+            command += "get daemonsets"
+            output_file = "container_daemonsets.txt"
+            execute_command(command, output_file)
+        elif choice == "15":
+            command += "get cronjobs"
+            output_file = "container_getcronjob.txt"
+            execute_command(command, output_file)
     elif choice == "17":
         repository = input("Enter the repository (optional, press Enter to skip): ")
         command = f"gcloud container images list"
