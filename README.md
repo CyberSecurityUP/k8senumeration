@@ -30,7 +30,26 @@ gcloud container clusters get-credentials CLUSTER_NAME \
     --region=COMPUTE_REGION
 `
 
-## Using K8SEnumgcp
+### Configure EKS
+
+AWS Configure Key
+`
+aws configure
+`
+
+AWS Authentication Info
+`
+aws sts get-caller-identity
+`
+
+AWS Kube Configuration
+`
+aws eks update-kubeconfig --name cluster-name1 --region us-east-1
+aws eks update-kubeconfig --name cluster-name2 --region us-east-1
+`
+
+
+## Using K8SEnumeration
 
 ### Running Tool
 
