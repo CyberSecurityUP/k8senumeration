@@ -31,6 +31,9 @@ while True:
     print("17. Lists container images in Google Cloud (with optional repository)")
     print("18. Describes a container image in Google Cloud (with optional name)")
     print("19. Lists Google Cloud container clusters (with optional cluster name and region)")
+    print("20. Lists AWS EKS clusters (with optional region)")
+    print("21. Describes an AWS EKS cluster (with optional cluster name and region)")
+    print("22. Lists AWS EKS node groups (with cluster name and optional region)")
     print("0. Exit")
 
     choice = input("Option: ")
@@ -155,6 +158,34 @@ while True:
             command += f" --region={region}"
         output_file = "container_clusters.txt"
         execute_command(command, output_file)
+    elif choice in ["20", "21", "22"]:
+        if choice == "20":
+            region = input("Enter the region (optional, press Enter to skip): ")
+            command = "aws eks list-clusters"
+            if region:
+                command += f" --region {region}"
+            output_file = "aws_eks_list_clusters.txt"
+            execute_command(command, output_file)
+        elif choice == "21":
+            cluster_name = input("Enter the cluster name (optional, press Enter to skip): ")
+            region = input("Enter the region (optional, press Enter to skip): ")
+            command = "aws eks describe-cluster"
+            if cluster_name:
+                command += f" --name {cluster_name}"
+            if region:
+                command += f" --region {region}"
+            output_file = "aws_eks_describe_cluster.txt"
+            execute_command(command, output_file)
+        elif choice == "22":
+            cluster_name = input("Enter the cluster name: ")
+            region = input("Enter the region (optional, press Enter to skip): ")
+            command = "aws eks list-nodegroups"
+            if cluster_name:
+                command += f" --cluster {cluster_name}"
+            if region:
+                command += f" --region {region}"
+            output_file = "aws_eks_list_nodegroups.txt"
+            execute_command(command, output_file)
     else:
         print("Invalid option. Try again.")
 
